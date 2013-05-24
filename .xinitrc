@@ -52,5 +52,11 @@ mpdscribble &
 
 
 ## Start WM
+wmname LG3D
+~/.lightson 295 &
+/usr/bin/xscreensaver -no-splash &
+/etc/X11/Xsession
+nitrogen --restore
+gpuush -background &
 exec awesome --no-argb
 

@@ -26,6 +26,15 @@ if [ -r "$ID_RSA" ] && (( $+commands[keychain] )); then
 	eval `keychain --eval --agents ssh -Q --quiet ~/.ssh/id_rsa`
 fi
 
+ssh-add -l > /dev/null || alias ssh='ssh-add -l > /dev/null || ssh-add && unalias ssh; ssh'
+ssh-add -l > /dev/null || alias git='ssh-add -l > /dev/null || ssh-add && unalias git; git'
+ssh-add -l > /dev/null || alias hg='ssh-add -l > /dev/null || ssh-add && unalias hg; hg'
+PATH="$PATH:/usr/local/heroku/bin"
+PATH="$PATH:/home/xthexder/dev/go/bin"
+PATH="$PATH:/home/xthexder/.gem/ruby/1.9.1/bin"
+PATH="$PATH:/opt/android-sdk/platform-tools"
+export GOPATH="/home/xthexder/dev/go"
+alias pacman='sudo pacman'
 
 if [ -r "$HOME/.zsh-env" ]; then
 	source "$HOME/.zsh-env"
