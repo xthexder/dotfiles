@@ -35,6 +35,7 @@ PATH="$PATH:/home/xthexder/.gem/ruby/1.9.1/bin"
 PATH="$PATH:/opt/android-sdk/platform-tools"
 export GOPATH="/home/xthexder/dev/go"
 alias pacman='sudo pacman'
+alias sink='ssh -t raster.frustra.org sink'
 
 if [ -r "$HOME/.zsh-env" ]; then
 	source "$HOME/.zsh-env"
