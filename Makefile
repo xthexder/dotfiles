@@ -1,3 +1,12 @@
+UNAME := $(shell uname)
+
+LN_FLAGS := -s
+ifeq ($(UNAME), Linux)
+	LN_FLAGS := $(LN_FLAGS) -T
+else ifeq ($(UNAME), Darwin)
+	LN_FLAGS := $(LN_FLAGS) -h
+endif
+
 all: submodules kantan-build Xresources matcher-build link
 
 matcher-build:
@@ -14,8 +23,8 @@ Xresources:
 	mkdir -p .mpd/playlists
 	touch .mpd/mpd.{db,log,pid,state}
 
-link: .zsh .zshrc .vim .vimrc .gitconfig .gitignore_global .inputrc .tmux.conf .ctags .mpd .mpdconf .xbindkeysrc .xinitrc .ncmpcpp .slate .mpv
-	$(foreach file, $^, ln -s $(CURDIR)/$(file) ~ || true; )
+link: .zsh .zshrc .vim .vimrc .gitconfig .gitignore_global .inputrc .tmux.conf .config .ctags .mpd .mpdconf .xbindkeysrc .xinitrc .ncmpcpp .slate .mpv
+	$(foreach file, $^, ln $(LN_FLAGS) $(CURDIR)/$(file) ~ || true; )
 
 submodules:
 	git submodule init
