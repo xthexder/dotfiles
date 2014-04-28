@@ -26,9 +26,12 @@ if [ -r "$ID_RSA" ] && (( $+commands[keychain] )); then
 	eval `keychain --eval --agents ssh -Q --quiet ~/.ssh/id_rsa`
 fi
 
-ssh-add -l > /dev/null || alias ssh='ssh-add -l > /dev/null || ssh-add && unalias ssh; ssh'
-ssh-add -l > /dev/null || alias git='ssh-add -l > /dev/null || ssh-add && unalias git; git'
-ssh-add -l > /dev/null || alias hg='ssh-add -l > /dev/null || ssh-add && unalias hg; hg'
+if [ ! -z "$SSH_AGENT_PID" ]; then
+	ssh-add -l > /dev/null || alias ssh='ssh-add -l > /dev/null || ssh-add && unalias ssh; ssh'
+	ssh-add -l > /dev/null || alias git='ssh-add -l > /dev/null || ssh-add && unalias git; git'
+	ssh-add -l > /dev/null || alias hg='ssh-add -l > /dev/null || ssh-add && unalias hg; hg'
+fi
+
 PATH="$PATH:/usr/local/heroku/bin"
 PATH="$PATH:/home/xthexder/dev/go/bin"
 PATH="$PATH:/home/xthexder/.gem/ruby/2.0.0/bin"
