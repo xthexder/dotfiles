@@ -46,6 +46,7 @@ editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 firefox_cmd = "env LD_PRELOAD=/usr/lib/firefox/components/libfullscreenhack.so QT_NO_GLIB=1 firefox"
 gpuush_cmd = "gpuush -screenshot"
+lock_cmd = "xscreensaver-command -lock"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -57,10 +58,10 @@ modkey = "Mod1"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
     awful.layout.suit.floating
 }
 -- }}}
@@ -87,7 +88,7 @@ mymainmenu = awful.menu({ theme = { width = 150 },
                           items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "open firefox", firefox_cmd },
                                     { "open terminal", terminal },
-                                    { "suspend", "sudo pm-suspend" },
+                                    { "lock", lock_cmd },
                                     { "reboot", "xterm -e \"echo 'Reboot?' && sudo reboot\"" },
                                     { "power off", "xterm -e \"echo 'Power off?' && sudo poweroff\"" }
                                   }
@@ -237,6 +238,7 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey,           }, "'", function () awful.util.spawn(firefox_cmd) end),
+    awful.key({ modkey,           }, "BackSpace", function () awful.util.spawn(lock_cmd) end),
     awful.key({                   }, "Print", function () awful.util.spawn(gpuush_cmd) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
