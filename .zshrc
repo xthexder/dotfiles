@@ -34,11 +34,10 @@ fi
 
 PATH="$PATH:/usr/local/heroku/bin"
 PATH="$PATH:/home/xthexder/dev/go/bin"
-PATH="$PATH:/home/xthexder/.gem/ruby/2.0.0/bin"
+PATH="$PATH:/home/xthexder/.gem/ruby/2.1.0/bin"
 PATH="$PATH:/opt/android-sdk/platform-tools"
 export GOPATH="/home/xthexder/dev/go"
 alias pacman='sudo pacman'
-alias sink='ssh -t raster.frustra.org sink'
 
 if [ -r "$HOME/.zsh-env" ]; then
 	source "$HOME/.zsh-env"

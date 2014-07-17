@@ -41,15 +41,13 @@ xset m 0 0 # Disable mouse acceleration
 
 
 ## Audio
-export SDL_AUDIODRIVER=alsa
+export SDL_AUDIODRIVER=pulseaudio
 
 if [ -f $HOME/.jackdrc ]; then
 	sh $HOME/.jackdrc > $HOME/.jackd.log 2>&1 &
 fi
 
-mpd ~/.mpdconf
-mpdscribble &
-
+jack_control start
 
 ## Start WM
 wmname LG3D
