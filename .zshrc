@@ -2,7 +2,7 @@ ZSH="$HOME/.zsh/oh-my-zsh"
 ZSH_CUSTOM="$HOME/.zsh"
 
 ZSH_THEME="pushrax"
-plugins=(git ruby node brew nyan vi-mode history-substring-search)
+plugins=(git ruby node brew nyan history-substring-search)
 
 export DISABLE_AUTO_UPDATE="true"
 source "$ZSH/oh-my-zsh.sh"
@@ -11,11 +11,6 @@ export EDITOR=vim
 
 # Prevent ESC from lagging
 KEYTIMEOUT=1
-
-# Make backspace work as with vim's "set backspace=2"
-bindkey "^?" backward-delete-char
-bindkey "^H" backward-delete-char
-bindkey "^W" backward-kill-word
 
 setopt nocorrectall
 
