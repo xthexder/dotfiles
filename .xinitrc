@@ -35,7 +35,6 @@ fi
 
 
 ## Input
-xbindkeys
 ibus-daemon --xim &
 xset m 0 0 # Disable mouse acceleration
 
@@ -43,11 +42,9 @@ xset m 0 0 # Disable mouse acceleration
 ## Audio
 export SDL_AUDIODRIVER=pulseaudio
 
-if [ -f $HOME/.jackdrc ]; then
-	sh $HOME/.jackdrc > $HOME/.jackd.log 2>&1 &
+if [ -f $HOME/.jackrc ]; then
+	sh $HOME/.jackrc > $HOME/.jackd.log 2>&1 &
 fi
-
-jack_control start
 
 ## Start WM
 wmname LG3D
