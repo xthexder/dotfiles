@@ -7,7 +7,7 @@ else ifeq ($(UNAME), Darwin)
 	LN_FLAGS := $(LN_FLAGS) -h
 endif
 
-all: submodules kantan-build Xresources matcher-build link
+all: submodules kantan-build Xresources matcher-build link zshlink
 
 matcher-build:
 	cd matcher; make
@@ -25,6 +25,9 @@ Xresources:
 
 link: .zsh .zshrc .vim .vimrc .gitconfig .gitignore_global .inputrc .tmux.conf .config .ctags .mpd .mpdconf .xbindkeysrc .xinitrc .ncmpcpp .slate .mpv
 	$(foreach file, $^, ln $(LN_FLAGS) $(CURDIR)/$(file) ~/$(file) || true; )
+
+zshlink: directories.zsh grep.zsh
+	$(foreach file, $^, test -h $(CURDIR)/.zsh/oh-my-zsh/lib/$(file) || (rm $(CURDIR)/.zsh/oh-my-zsh/lib/$(file) && ln -s $(CURDIR)/$(file) $(CURDIR)/.zsh/oh-my-zsh/lib/$(file)); )
 
 submodules:
 	git submodule init
