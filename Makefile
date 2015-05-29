@@ -24,7 +24,7 @@ Xresources:
 	touch .mpd/mpd.{db,log,pid,state}
 
 link: .zsh .zshrc .vim .vimrc .gitconfig .gitignore_global .inputrc .tmux.conf .config .ctags .mpd .mpdconf .xbindkeysrc .xinitrc .ncmpcpp .slate .mpv
-	$(foreach file, $^, ln $(LN_FLAGS) $(CURDIR)/$(file) ~ || true; )
+	$(foreach file, $^, ln $(LN_FLAGS) $(CURDIR)/$(file) ~/$(file) || true; )
 
 submodules:
 	git submodule init
